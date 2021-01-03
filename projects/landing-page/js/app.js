@@ -24,6 +24,7 @@ const navBar = document.getElementById("navbar__list");
  * Start Helper Functions
  * 
  */
+
 function respondToTheClick(e) {
     e.preventDefault();
     console.log(e);
@@ -117,18 +118,7 @@ function appendSectionsToNavBar(navBar) {
     navBar.appendChild(fragment);
 }
 
-function throttle(callback, limit) {
-    var wait = false;
-    return function(...args) {
-        if (!wait) {
-            callback(...args);
-            wait = true;
-            setTimeout(function() {
-                wait = false;
-            }, limit);
-        }
-    }
-}
+
 // Add class 'active' to section when near top of viewport
 
 
@@ -138,6 +128,8 @@ function throttle(callback, limit) {
 appendSectionsToNavBar(navBar);
 navBar.addEventListener('click', respondToTheClick);
 document.addEventListener('scroll', throttle(highlightSectionInView, 100));
+
+
 /**
  * End Main Functions
  * Begin Events
