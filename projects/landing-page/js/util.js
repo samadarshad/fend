@@ -12,11 +12,13 @@ function throttle(callback, limit) {
 }
 
 function setOnlyOneElementWithClass(chosenElement, allElements, className) {
+    console.log("chosen:" + chosenElement.id)
     for (const element of allElements) {
         if (element == chosenElement) {
-            continue
+            console.log(element.id);
+        } else {
+            element.classList.remove(className);
         }
-        element.classList.remove(className);
     }
     chosenElement.classList.add(className);
 }
