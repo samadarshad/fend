@@ -12,10 +12,9 @@ function throttle(callback, limit) {
 }
 
 function setOnlyOneElementWithClass(chosenElement, allElements, className) {
-    console.log("chosen:" + chosenElement.id)
     for (const element of allElements) {
         if (element == chosenElement) {
-            console.log(element.id);
+            continue;
         } else {
             element.classList.remove(className);
         }
@@ -37,4 +36,14 @@ function getClosestElementToTop(elements, offset) {
     }
     element = elements[lowest];
     return element;
+}
+
+function scrollToElement(element, offset) {
+    const topOfElement = element.getBoundingClientRect().top + window.pageYOffset;
+
+    window.scrollTo({
+        top: topOfElement - offset,
+        left: 0,
+        behavior: 'smooth'
+    })
 }

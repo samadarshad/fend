@@ -18,10 +18,20 @@ const NavBar = document.getElementById("navbar__list");
 const Sections = document.getElementsByTagName("section");
 
 
+// SCRIPT
+appendSectionsToNavBar(NavBar, Sections);
+NavBar.addEventListener('click', function(event) {
+    respondToTheClick(event, NavBar)
+});
+document.addEventListener('scroll', function(event) {
+    throttle(setStyleActiveElement, 100)(Sections, NavBar)
+});
+
+
 // SETUP
-function appendSectionsToNavBar(navBar) {
+function appendSectionsToNavBar(navBar, sections) {
     const fragment = document.createDocumentFragment();
-    for (const section of Sections) {
+    for (const section of sections) {
         const newNavEl = document.createElement('li');
         newNavEl.innerText = section.getAttribute("data-nav");
         newNavEl.classList.add("menu__link");
@@ -36,36 +46,23 @@ function appendSectionsToNavBar(navBar) {
 }
 
 // CALLBACKS
-
-function respondToTheClick(e) {
+function respondToTheClick(e, navBar) {
     e.preventDefault();
 
     const id = e.target.firstElementChild.getAttribute("href");
     const element = document.getElementById(id);
-    scrollToElement(element);
+
+    const navBarHeight = navBar.getBoundingClientRect().height
+    scrollToElement(element, navBarHeight);
 }
 
-function scrollToElement(element) {
-    const topOfElement = element.getBoundingClientRect().top + window.pageYOffset;
 
-    window.scrollTo({
-        top: topOfElement - NavBarHeight,
-        left: 0,
-        behavior: 'smooth'
-    })
-}
-
-function setStyleActiveElement() {
-    const element = getClosestElementToTop(Sections, NavBarHeight);
-    setOnlyOneElementWithClass(element, Sections, "your-active-class");
+function setStyleActiveElement(sections, navBar) {
+    const navBarHeight = navBar.getBoundingClientRect().height
+    const element = getClosestElementToTop(sections, navBarHeight);
+    setOnlyOneElementWithClass(element, sections, "your-active-class");
 
     const chosenNavBarElement = NavBar.querySelector(`[href=${element.id}]`).parentElement;
     const allNavbarElements = NavBar.getElementsByTagName("li");
     setOnlyOneElementWithClass(chosenNavBarElement, allNavbarElements, "selected");
 }
-
-
-appendSectionsToNavBar(NavBar);
-const NavBarHeight = NavBar.getBoundingClientRect().height;
-NavBar.addEventListener('click', respondToTheClick);
-document.addEventListener('scroll', throttle(setStyleActiveElement, 100));
