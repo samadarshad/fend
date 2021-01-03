@@ -26,11 +26,17 @@ const navBar = document.getElementById("navbar__list");
  */
 function respondToTheClick(e) {
     e.preventDefault();
+    console.log(e);
+
+    highlightNavbarSection(e.target);
+
     const id = e.target.firstElementChild.getAttribute("href");
     const element = document.getElementById(id);
     scrollToElement(element);
 
     makeActiveElement(element);
+
+
 }
 
 function scrollToElement(element) {
@@ -72,6 +78,19 @@ function highlightSectionInView() {
     const sections = document.getElementsByTagName("section");
     const element = getClosestElementToTop(sections);
     makeActiveElement(element);
+
+    const navBarElement = navBar.querySelector(`[href=${element.id}]`).parentElement;
+    highlightNavbarSection(navBarElement);
+}
+
+
+
+function highlightNavbarSection(navBarElement) {
+    const sections = navBar.getElementsByTagName("li");
+    for (const section of sections) {
+        section.classList.remove("selected");
+    }
+    navBarElement.classList.add("selected");
 }
 
 /**
