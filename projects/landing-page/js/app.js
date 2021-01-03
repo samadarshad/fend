@@ -27,6 +27,12 @@ const navBar = document.getElementById("navbar__list");
 function respondToTheClick(e) {
     e.preventDefault();
     const id = e.target.firstElementChild.getAttribute("href");
+    scrollToId(id);
+
+    makeActiveSection(id);
+}
+
+function scrollToId(id) {
     const element = document.getElementById(id);
     const topOfElement = element.getBoundingClientRect().top + window.pageYOffset;
     const navBarHeight = navBar.getBoundingClientRect().height;
@@ -38,6 +44,13 @@ function respondToTheClick(e) {
     })
 }
 
+function makeActiveSection(section_id) {
+    const sections = document.getElementsByTagName("section");
+    for (const section of sections) {
+        section.classList.remove("your-active-class");
+    }
+    document.getElementById(section_id).classList.add("your-active-class");
+}
 
 /**
  * End Helper Functions
@@ -46,29 +59,31 @@ function respondToTheClick(e) {
  */
 
 // build the nav
+function appendSectionsToNavBar(navBar) {
+    const fragment = document.createDocumentFragment();
+    const sections = document.getElementsByTagName("section");
+    for (const section of sections) {
+        const newNavEl = document.createElement('li');
+        newNavEl.innerText = section.getAttribute("data-nav");
+        newNavEl.classList.add("menu__link");
 
-const fragment = document.createDocumentFragment();
-const sections = document.getElementsByTagName("section");
-for (const section of sections) {
-    const newNavEl = document.createElement('li');
-    newNavEl.innerText = section.getAttribute("data-nav");
-    newNavEl.classList.add("menu__link");
+        const anchor = document.createElement('a');
+        anchor.setAttribute('href', section.getAttribute('id'));
+        newNavEl.appendChild(anchor);
 
-    const anchor = document.createElement('a');
-    anchor.setAttribute('href', section.getAttribute('id'));
-    newNavEl.appendChild(anchor);
-
-    fragment.appendChild(newNavEl);
+        fragment.appendChild(newNavEl);
+    }
+    navBar.appendChild(fragment);
 }
-navBar.appendChild(fragment);
+
 // Add class 'active' to section when near top of viewport
 
 
-navBar.addEventListener('click', respondToTheClick);
 
 
 // Scroll to anchor ID using scrollTO event
-
+appendSectionsToNavBar(navBar);
+navBar.addEventListener('click', respondToTheClick);
 
 /**
  * End Main Functions
