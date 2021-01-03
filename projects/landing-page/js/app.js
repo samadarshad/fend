@@ -13,17 +13,8 @@
  * 
  */
 
-/**
- * Define Global Variables
- * 
- */
-const navBar = document.getElementById("navbar__list");
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
- */
+const NavBar = document.getElementById("navbar__list");
+const Sections = document.getElementsByTagName("section");
 
 function respondToTheClick(e) {
     e.preventDefault();
@@ -36,13 +27,11 @@ function respondToTheClick(e) {
     scrollToElement(element);
 
     makeActiveElement(element);
-
-
 }
 
 function scrollToElement(element) {
     const topOfElement = element.getBoundingClientRect().top + window.pageYOffset;
-    const navBarHeight = navBar.getBoundingClientRect().height;
+    const navBarHeight = NavBar.getBoundingClientRect().height;
 
     window.scrollTo({
         top: topOfElement - navBarHeight,
@@ -52,59 +41,29 @@ function scrollToElement(element) {
 }
 
 function makeActiveElement(element) {
-    const sections = document.getElementsByTagName("section");
-    for (const section of sections) {
-        section.classList.remove("your-active-class");
-    }
-    element.classList.add("your-active-class");
-}
-
-function calcDistanceFromTop(element) {
-    const distance = element.getBoundingClientRect().top - navBar.getBoundingClientRect().height;
-    return Math.abs(distance);
-}
-
-function getClosestElementToTop(elements) {
-    var lowest = 0;
-    for (var i = 0; i < elements.length; i++) {
-        if (calcDistanceFromTop(elements[i]) < calcDistanceFromTop(elements[lowest])) {
-            lowest = i;
-        }
-    }
-    element = elements[lowest];
-    return element;
+    setOnlyOneElementWithClass(element, Sections, "your-active-class");
 }
 
 function highlightSectionInView() {
-    const sections = document.getElementsByTagName("section");
-    const element = getClosestElementToTop(sections);
+    const offset = NavBar.getBoundingClientRect().height;
+    const element = getClosestElementToTop(Sections, offset);
     makeActiveElement(element);
 
-    const navBarElement = navBar.querySelector(`[href=${element.id}]`).parentElement;
+    const navBarElement = NavBar.querySelector(`[href=${element.id}]`).parentElement;
     highlightNavbarSection(navBarElement);
 }
 
 
 
 function highlightNavbarSection(navBarElement) {
-    const sections = navBar.getElementsByTagName("li");
-    for (const section of sections) {
-        section.classList.remove("selected");
-    }
-    navBarElement.classList.add("selected");
+    const sections = NavBar.getElementsByTagName("li");
+    setOnlyOneElementWithClass(navBarElement, sections, "selected");
 }
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
- */
 
-// build the nav
 function appendSectionsToNavBar(navBar) {
     const fragment = document.createDocumentFragment();
-    const sections = document.getElementsByTagName("section");
-    for (const section of sections) {
+    for (const section of Sections) {
         const newNavEl = document.createElement('li');
         newNavEl.innerText = section.getAttribute("data-nav");
         newNavEl.classList.add("menu__link");
@@ -119,25 +78,6 @@ function appendSectionsToNavBar(navBar) {
 }
 
 
-// Add class 'active' to section when near top of viewport
-
-
-
-
-// Scroll to anchor ID using scrollTO event
-appendSectionsToNavBar(navBar);
-navBar.addEventListener('click', respondToTheClick);
+appendSectionsToNavBar(NavBar);
+NavBar.addEventListener('click', respondToTheClick);
 document.addEventListener('scroll', throttle(highlightSectionInView, 100));
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
- */
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
