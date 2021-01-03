@@ -27,14 +27,13 @@ const navBar = document.getElementById("navbar__list");
 function respondToTheClick(e) {
     e.preventDefault();
     const id = e.target.firstElementChild.getAttribute("href");
+    const element = document.getElementById(id);
+    scrollToElement(element);
 
-    scrollToId(id);
-
-    makeActiveSection(id);
+    makeActiveElement(element);
 }
 
-function scrollToId(id) {
-    const element = document.getElementById(id);
+function scrollToElement(element) {
     const topOfElement = element.getBoundingClientRect().top + window.pageYOffset;
     const navBarHeight = navBar.getBoundingClientRect().height;
 
@@ -45,12 +44,34 @@ function scrollToId(id) {
     })
 }
 
-function makeActiveSection(section_id) {
+function makeActiveElement(element) {
     const sections = document.getElementsByTagName("section");
     for (const section of sections) {
         section.classList.remove("your-active-class");
     }
-    document.getElementById(section_id).classList.add("your-active-class");
+    element.classList.add("your-active-class");
+}
+
+function calcDistanceFromTop(element) {
+    const distance = element.getBoundingClientRect().top - navBar.getBoundingClientRect().height;
+    return Math.abs(distance);
+}
+
+function getClosestElementToTop(elements) {
+    var lowest = 0;
+    for (var i = 0; i < elements.length; i++) {
+        if (calcDistanceFromTop(elements[i]) < calcDistanceFromTop(elements[lowest])) {
+            lowest = i;
+        }
+    }
+    element = elements[lowest];
+    return element;
+}
+
+function highlightSectionInView() {
+    const sections = document.getElementsByTagName("section");
+    const element = getClosestElementToTop(sections);
+    makeActiveElement(element);
 }
 
 /**
@@ -77,6 +98,18 @@ function appendSectionsToNavBar(navBar) {
     navBar.appendChild(fragment);
 }
 
+function throttle(callback, limit) {
+    var wait = false;
+    return function(...args) {
+        if (!wait) {
+            callback(...args);
+            wait = true;
+            setTimeout(function() {
+                wait = false;
+            }, limit);
+        }
+    }
+}
 // Add class 'active' to section when near top of viewport
 
 
@@ -85,7 +118,7 @@ function appendSectionsToNavBar(navBar) {
 // Scroll to anchor ID using scrollTO event
 appendSectionsToNavBar(navBar);
 navBar.addEventListener('click', respondToTheClick);
-
+document.addEventListener('scroll', throttle(highlightSectionInView, 100));
 /**
  * End Main Functions
  * Begin Events
