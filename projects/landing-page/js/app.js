@@ -14,7 +14,7 @@ function setDisplayOfNavBar() {
 // REGISTER CALLBACKS
 document.addEventListener('DOMContentLoaded', function() {
     appendSectionsToNavBar(NavBar, Sections);
-    show(NavBar);
+    show(NavBar); //show NavBar upon page loads
     NavBarHeight = NavBar.getBoundingClientRect().height;
 });
 
