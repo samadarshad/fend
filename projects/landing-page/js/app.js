@@ -1,57 +1,53 @@
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
+// GLOBALS
+const NavBar = document.getElementById("navbar__list");
+const Sections = document.getElementsByTagName("section");
+let NavBarHeight = 0;
+const throttleMs = 300;
+let scrolling = false;
+let mouseOver = false;
 
-/**
- * Define Global Variables
- * 
-*/
+// FUNCTIONS
+function setDisplayOfNavBar() {
+    (mouseOver || scrolling) ? show(NavBar): hide(NavBar);
+}
 
+// REGISTER CALLBACKS
+document.addEventListener('DOMContentLoaded', function() {
+    appendSectionsToNavBar(NavBar, Sections);
+    show(NavBar); //show NavBar upon page loads
+    NavBarHeight = NavBar.getBoundingClientRect().height;
+});
 
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
+NavBar.addEventListener('click', function(e) {
+    e.preventDefault();
 
+    const id = e.target.firstElementChild.getAttribute("href");
+    const element = document.getElementById(id);
 
+    scrollToElement(element, NavBarHeight);
+});
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
+document.addEventListener('scroll', function(e) {
+    throttle(function() {
+        scrolling = true;
+        setDisplayOfNavBar();
+        const element = getClosestElementToTop(Sections, NavBarHeight);
+        setOnlyOneElementWithClass(element, Sections, "your-active-class");
 
-// build the nav
+        const chosenNavBarElement = NavBar.querySelector(`[href=${element.id}]`).parentElement;
+        const allNavbarElements = NavBar.getElementsByTagName("li");
+        setOnlyOneElementWithClass(chosenNavBarElement, allNavbarElements, "selected");
+    }, throttleMs)(e);
+});
 
+scrollStop(function() {
+    scrolling = false;
+    setDisplayOfNavBar();
+});
 
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
-
+document.addEventListener('mousemove', function(event) {
+    throttle(function(event) {
+        mouseOver = (event.clientY < NavBarHeight);
+        setDisplayOfNavBar();
+    }, throttleMs)(event);
+});
