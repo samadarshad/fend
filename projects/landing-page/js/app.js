@@ -17,7 +17,7 @@
  * Define Global Variables
  * 
  */
-
+const navBar = document.getElementById("navbar__list");
 
 /**
  * End Global Variables
@@ -26,14 +26,13 @@
  */
 function respondToTheClick(e) {
     e.preventDefault();
-    console.log(e);
-    console.log('A paragraph was clicked.' + e.target.firstElementChild.getAttribute("href"));
     const id = e.target.firstElementChild.getAttribute("href");
     const element = document.getElementById(id);
     const topOfElement = element.getBoundingClientRect().top + window.pageYOffset;
-    console.log(topOfElement)
+    const navBarHeight = navBar.getBoundingClientRect().height;
+
     window.scrollTo({
-        top: topOfElement,
+        top: topOfElement - navBarHeight,
         left: 0,
         behavior: 'smooth'
     })
@@ -47,7 +46,7 @@ function respondToTheClick(e) {
  */
 
 // build the nav
-const navBar = document.getElementById("navbar__list");
+
 const fragment = document.createDocumentFragment();
 const sections = document.getElementsByTagName("section");
 for (const section of sections) {
