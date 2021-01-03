@@ -27,6 +27,7 @@ const navBar = document.getElementById("navbar__list");
 function respondToTheClick(e) {
     e.preventDefault();
     const id = e.target.firstElementChild.getAttribute("href");
+
     scrollToId(id);
 
     makeActiveSection(id);
