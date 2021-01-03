@@ -56,35 +56,18 @@ function show(element) {
     element.style.display = "inherit";
 }
 
+function appendSectionsToNavBar(navBar, sections) {
+    const fragment = document.createDocumentFragment();
+    for (const section of sections) {
+        const newNavEl = document.createElement('li');
+        newNavEl.innerText = section.getAttribute("data-nav");
+        newNavEl.classList.add("menu__link");
 
-/*!
- * Run a callback function after scrolling has stopped
- * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Function} callback The function to run after scrolling
- */
-const ScrollStopTimeoutMs = 100;
-var scrollStop = function(callback) {
+        const anchor = document.createElement('a');
+        anchor.setAttribute('href', section.getAttribute('id'));
+        newNavEl.appendChild(anchor);
 
-    // Make sure a valid callback was provided
-    if (!callback || typeof callback !== 'function') return;
-
-    // Setup scrolling variable
-    var isScrolling;
-
-    // Listen for scroll events
-    window.addEventListener('scroll', function(event) {
-
-        // Clear our timeout throughout the scroll
-        window.clearTimeout(isScrolling);
-
-        // Set a timeout to run after scrolling ends
-        isScrolling = setTimeout(function() {
-
-            // Run the callback
-            callback();
-
-        }, ScrollStopTimeoutMs);
-
-    }, false);
-
-};
+        fragment.appendChild(newNavEl);
+    }
+    navBar.appendChild(fragment);
+}
