@@ -16,19 +16,60 @@
 // GLOBALS
 const NavBar = document.getElementById("navbar__list");
 const Sections = document.getElementsByTagName("section");
+const throttleMs = 300;
+const mouseOverToNavBarHeight = 150;
+let scrolling = false;
+let mouseOver = false;
 
-
-// SCRIPT
-appendSectionsToNavBar(NavBar, Sections);
+// REGISTER CALLBACKS
+document.addEventListener('DOMContentLoaded', function() {
+    appendSectionsToNavBar(NavBar, Sections);
+});
 NavBar.addEventListener('click', function(event) {
     respondToTheClick(event, NavBar)
 });
-document.addEventListener('scroll', function(event) {
-    throttle(setStyleActiveElement, 100)(Sections, NavBar)
+document.addEventListener('scroll', function(e) {
+    throttle(function() {
+        scrolling = true;
+        console.log("scrolling");
+        setDisplayOfNavBar();
+        setStyleActiveElement(Sections, NavBar);
+    }, throttleMs)(e);
+});
+scrollStop(function() {
+    scrolling = false;
+    setDisplayOfNavBar();
+});
+document.addEventListener('mousemove', function(event) {
+    throttle(function(event) {
+        setMouseOver(event);
+        setDisplayOfNavBar();
+    }, throttleMs)(event);
+
 });
 
+// Making NavBar present on page load
+setTimeout(function() {
+    show(NavBar);
+}, 0);
 
-// SETUP
+
+function setDisplayOfNavBar() {
+    if (mouseOver || scrolling) {
+        show(NavBar);
+    } else {
+        hide(NavBar);
+    }
+}
+
+function setMouseOver(e) {
+    if (e.clientY < mouseOverToNavBarHeight) {
+        mouseOver = true;
+    } else {
+        mouseOver = false;
+    }
+}
+
 function appendSectionsToNavBar(navBar, sections) {
     const fragment = document.createDocumentFragment();
     for (const section of sections) {
@@ -55,7 +96,6 @@ function respondToTheClick(e, navBar) {
     const navBarHeight = navBar.getBoundingClientRect().height
     scrollToElement(element, navBarHeight);
 }
-
 
 function setStyleActiveElement(sections, navBar) {
     const navBarHeight = navBar.getBoundingClientRect().height
