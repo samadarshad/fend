@@ -28,8 +28,11 @@ app.get('/all', (req, res) => {
 
 const weather = require('./weather.js');
 
-app.get('/weather', (req, res) => {
-    weather.getWeather("london").then( data => {
-        res.send(data);
-    })
+app.get('/weather', async function(req, res) {
+    await weather.getWeather("london")
+        .then((data) => {
+            console.log("server", data)
+            res.send(data);
+        });    
+    
 })
