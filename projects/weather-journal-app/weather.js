@@ -9,14 +9,8 @@ const asyncWrapper = require('./asyncWrapper.js');
 module.exports = {
     getWeather: async function (city_name) {
         const url = base_url+city_name+api_key_prefix+api_key;
-        // await asyncWrapper.getData(url).then( data => {
-        //     console.log("weather.js", data);
-        //     return data;
-        // })   
-        
-        const data = await asyncWrapper.getData(url);
         try {
-            console.log("weather.js", data);
+            const data = await asyncWrapper.getData(url);        
             return data;
         } catch(error) {
             console.log("error", error);

@@ -12,14 +12,6 @@ app.use(cors());
 
 app.use(express.static('website'));
 
-
-// const port = 3000;
-// const server = app.listen(port, listening);
-
-// function listening() {
-//     console.log(`server running on port ${port}`);
-// }
-
 module.exports = app
 
 app.get('/all', (req, res) => {
@@ -28,11 +20,11 @@ app.get('/all', (req, res) => {
 
 const weather = require('./weather.js');
 
-app.get('/weather', async function(req, res) {
-    await weather.getWeather("london")
-        .then((data) => {
-            console.log("server", data)
+app.get('/weather', async function(req, res) {        
+        try {
+            const data = await weather.getWeather("london");
             res.send(data);
-        });    
-    
+        } catch(error) {
+            console.log("error", error);
+        }    
 })
