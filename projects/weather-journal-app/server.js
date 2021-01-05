@@ -26,5 +26,17 @@ app.get('/weather', async function(req, res) {
             res.send(data);
         } catch(error) {
             console.log("error", error);
-        }    
+        } 
+})
+
+
+const asyncWrapper = require('./asyncWrapper.js');
+app.get('/testpost', async function(req, res) {
+    try {
+        const data = await asyncWrapper.postData('https://proud-bush-7085.getsandbox.com/users', {'data':'test2'})
+        res.send(data);
+    } catch(error) {
+        console.log("error", error);
+    } 
+    
 })
