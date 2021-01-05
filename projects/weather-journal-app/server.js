@@ -29,5 +29,7 @@ app.get('/all', (req, res) => {
 const weather = require('./weather.js');
 
 app.get('/weather', (req, res) => {
-    res.send(weather.getWeather("london"))
+    weather.getWeather("london").then( data => {
+        res.send(data);
+    })
 })
