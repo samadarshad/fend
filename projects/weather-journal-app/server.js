@@ -25,3 +25,9 @@ module.exports = app
 app.get('/all', (req, res) => {
     res.send(projectData)
 })
+
+const weather = require('./weather.js');
+
+app.get('/weather', (req, res) => {
+    res.send(weather.getWeather("london"))
+})
