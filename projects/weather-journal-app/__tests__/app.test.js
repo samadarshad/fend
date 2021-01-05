@@ -18,3 +18,17 @@ describe('test /all', () => {
         done()
     })
 })
+
+describe('test /add', () => {
+    it('post', async done => {
+        const data = {
+            title: "post 1",
+            content: "abcdef",
+        }
+        const response = await request.post('/add').send(data)
+    
+        expect(response.status).toBe(200)
+        expect(response.body.success).toBe('ok')
+        done()
+    })
+})
