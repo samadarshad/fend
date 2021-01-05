@@ -7,7 +7,6 @@ describe('test /all', () => {
         const response = await request.get('/all')
     
         expect(response.status).toBe(200)
-        // expect(response.body.message).toBe('pass!')
         done()
     })
 
@@ -20,15 +19,20 @@ describe('test /all', () => {
 })
 
 describe('test /add', () => {
-    it('post', async done => {
-        const data = {
-            title: "post 1",
-            content: "abcdef",
-        }
-        const response = await request.post('/add').send(data)
-    
+    const data = {
+        title: "post 1",
+        content: "abcdef",
+    }
+    it('post', async done => {        
+        const response = await request.post('/add').send(data)    
         expect(response.status).toBe(200)
         expect(response.body.success).toBe('ok')
+        done()
+    })
+
+    it('get', async done => {
+        const response = await request.get('/all')    
+        expect(response.body).toContainEqual(data)
         done()
     })
 })

@@ -5,7 +5,7 @@ module.exports = {
         try {            
             console.log("adding:", data);
             projectData.push(data);
-            console.log(projectData);
+            console.log("all data:", projectData);
         } catch(error) {
             console.log("error", error);
         }
