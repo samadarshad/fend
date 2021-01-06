@@ -1,10 +1,21 @@
 # Weather-Journal App Project
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+Asynchronous web app that uses Web API and user data to dynamically update the UI. 
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+## Dependencies
+Tested on:
+npm version 6.14.0
+node version 14.15.1
+`sudo npm ci` will install the dependencies, fail if not work. Do `sudo npm install` if it doesnt work.
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+## How to run 
+`sudo npm run start`
+Go to localhost:3000 
+
+## Tests
+`sudo npm run tests`
+Note the tests rely on https://beeceptor.com/console/abdus-samad-weather-journal-test being live. 
+
+## Errors
+Errors are handled by logging to the server console, and sending to the client in the form `Error: <status_code>`.
