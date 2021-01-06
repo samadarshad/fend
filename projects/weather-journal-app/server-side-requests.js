@@ -1,15 +1,4 @@
-global.fetch = require("node-fetch");
-// const fetch = require("node-fetch");
-const requests = require('./shared/requests.js');
-
-class testFetch {
-    foo() {
-        return "I am testFetch"
-    }
-}
-
-const testObj = new testFetch();
-const requestsWithFetch = new requests.requestsService(testObj)
-console.log("server-side-requests:", requestsWithFetch.getDisplayData());
-
-module.exports = requests
+const fetch = require("node-fetch");
+const requestsService = require('./shared/requests.js');
+const serverSideRequests = new requestsService.requestsService(fetch);
+module.exports = serverSideRequests
