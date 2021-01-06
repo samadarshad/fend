@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const weather = require('./weather.js');
-const requests = require('./requests.js');
+const requests = require('./server-side-requests');
 const persistence = require('./persistence.js');
 
 router.get('/weather', async function(req, res) {        

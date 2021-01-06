@@ -4,7 +4,7 @@ const api_key = process.env.WEATHER_API_KEY;
 const base_url = process.env.WEATHER_BASE_URL;
 const api_key_prefix = process.env.WEATHER_API_KEY_PREFIX;
 
-const requests = require('./requests.js');
+const requests = require('./server-side-requests');
 
 module.exports = {
     getTemperatureCelsius: async function (city_name) {        
