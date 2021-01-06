@@ -15,7 +15,7 @@ router.post('/weather', async function(req, res) {
         } catch(error) {            
             console.log("routes error", error);
             if (error instanceof errors.HttpError) {                
-                res.status(error.status_code).send(error.message);
+                res.status(error.status_code).json({ error: error.message  });
                 return
             }
             res.status(500).send(error)

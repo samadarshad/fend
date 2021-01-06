@@ -11,8 +11,13 @@ const content = document.getElementById("content");
 generate.addEventListener('click', respondToClick);
 
 async function respondToClick () {
-    await addNewEntry();
-    await updateUI();
+    try {
+        await addNewEntry();
+        await updateUI();
+    } catch (error) {
+        console.log("respondToClick error", error);
+    }
+
 }
 
 async function addNewEntry() {
@@ -23,7 +28,8 @@ async function addNewEntry() {
         newEntry.temperatureDegreesCelcius = weatherData.temperatureDegreesCelcius;
         await requests.postData('/api/add', newEntry);
     } catch (error) {
-        console.log("app error", error);
+        console.log("addNewEntry error", error);
+        throw new Error(error);
     }
 }
 
@@ -34,6 +40,7 @@ async function updateUI() {
         temp.textContent = data.temperatureDegreesCelcius;
         content.textContent = data.user_input;
     } catch (error) {
-        console.log("error", error);
+        console.log("updateUI error", error);
+        throw new Error(error);
     }
 }
