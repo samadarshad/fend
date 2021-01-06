@@ -3,14 +3,10 @@ const router = express.Router();
 
 const weather = require('./weather.js');
 const persistence = require('./persistence.js');
-const errors = require('./errors.js');
+
 
 function sendErrorToClient(error, res) {
-    if (error instanceof errors.HttpError) {                
-        res.status(error.status_code).json({ error: error.message  });        
-    } else {
-        res.status(500).send(error)
-    }    
+    res.status(error.message).send(error)  
 }
 
 router.post('/weather', async function(req, res) {        

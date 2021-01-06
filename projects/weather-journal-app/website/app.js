@@ -17,30 +17,20 @@ async function respondToClick () {
     } catch (error) {
         console.log("respondToClick error", error);
     }
-
 }
 
 async function addNewEntry() {
     const newDate = new Date().toDateString();
     let newEntry = new data_scheme.dataScheme(null, newDate, feelings.value, zip.value);
-    try {
-        const weatherData = await requests.postData('/api/weather', newEntry.location);
-        newEntry.temperatureDegreesCelcius = weatherData.temperatureDegreesCelcius;
-        await requests.postData('/api/add', newEntry);
-    } catch (error) {
-        console.log("addNewEntry error", error);
-        throw new Error(error);
-    }
+
+    const weatherData = await requests.postData('/api/weather', newEntry.location);
+    newEntry.temperatureDegreesCelcius = weatherData.temperatureDegreesCelcius;
+    await requests.postData('/api/add', newEntry);
 }
 
 async function updateUI() {
-    try {
-        const data = await requests.getData('/api/mostrecent');
-        date.textContent = data.date;
-        temp.textContent = data.temperatureDegreesCelcius;
-        content.textContent = data.user_input;
-    } catch (error) {
-        console.log("updateUI error", error);
-        throw new Error(error);
-    }
+    const data = await requests.getData('/api/mostrecent');
+    date.textContent = data.date;
+    temp.textContent = data.temperatureDegreesCelcius;
+    content.textContent = data.user_input;
 }

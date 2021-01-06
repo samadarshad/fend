@@ -5,39 +5,29 @@
                this.fetch = fetch
           }
 
-          getData = async function ( url = '' ) {         
-               try {
-                    const response = await this.fetch(url); 
-                    if (!response.ok) {
-                         return Promise.reject(new Error(response.status));
-                    }
-                    const newData = response.json();
-                    return newData
-               } catch(error) {
-                    console.log("getData error", error);
-                    throw new Error(error);
+          getData = async function ( url = '' ) { 
+               const response = await this.fetch(url); 
+               if (!response.ok) {
+                    return Promise.reject(new Error(response.status));
                }
+               const newData = response.json();
+               return newData
           }
 
-          postData = async function ( url = '', data = {}) {         
-               try {
-                    const response = await this.fetch(url, {
-                         method: 'POST',
-                         credentials: 'same-origin',
-                         headers: {
-                              'Content-Type': 'application/json',
-                         },
-                              body: JSON.stringify(data),
-                    });
-                    if (!response.ok) {
-                         return Promise.reject(new Error(response.status));
-                    }
-                    const newData = response.json();
-                    return newData
-               } catch(error) {
-                    console.log("postData error", error);
-                    throw new Error(error);
+          postData = async function ( url = '', data = {}) { 
+               const response = await this.fetch(url, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                         'Content-Type': 'application/json',
+                    },
+                         body: JSON.stringify(data),
+               });
+               if (!response.ok) {
+                    return Promise.reject(new Error(response.status));
                }
+               const newData = response.json();
+               return newData
           };
 
           
