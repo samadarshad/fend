@@ -13,7 +13,8 @@ module.exports = {
         try {
             const zip = location.zip
             const weatherData = await getWeather(zip);
-            if (weatherData.cod == '404') {
+            console.log(weatherData)
+            if (weatherData.cod != '200') {
                 const error = new errors.HttpError(weatherData.cod, weatherData.message);
                 return Promise.reject(error)
             } 

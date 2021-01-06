@@ -18,8 +18,7 @@ router.post('/weather', async function(req, res) {
                 res.status(error.status_code).send(error.message);
                 return
             }
-            res.status(500)
-            res.send(error)
+            res.status(500).send(error)
         } 
 })
 

@@ -11,7 +11,7 @@
                     const newData = response.json();
                     return newData
                } catch(error) {
-                    console.log("error", error);
+                    console.log("getData error", error);
                }
           }
 
@@ -28,7 +28,7 @@
                     const newData = response.json();
                     return newData
                } catch(error) {
-                    console.log("error", error);
+                    console.log("postData error", error);
                }
           };
 
