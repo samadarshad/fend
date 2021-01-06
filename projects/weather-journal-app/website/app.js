@@ -5,3 +5,4 @@ let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 console.log(share.test());
+console.log(newDate);

@@ -4,7 +4,7 @@
          return 'This is a function from shared module';
     };
 
-    exports.data = class {
+    exports.dataScheme = class {
          constructor(temperatureDegreesCelcius, date, user_input) {
               this.temperatureDegreesCelcius = temperatureDegreesCelcius;
               this.date = date;
