@@ -16,7 +16,7 @@ router.post('/weather', async function(req, res) {
             res.send({
                 temperatureDegreesCelcius: temperatureCelsius
             });
-        } catch(error) {            
+        } catch (error) {            
             console.log("routes error", error);
             sendErrorToClient(error, res);
         } 
@@ -27,7 +27,7 @@ router.post('/add', async function(req, res) {
         const data = req.body;
         await persistence.storeData(data);
         res.send({success: "ok"}) 
-    } catch(error) {
+    } catch (error) {
         console.log("routes error", error);
         sendErrorToClient(error, res);
     } 

@@ -1,22 +1,14 @@
 const projectData = [];
 
 module.exports = {
-    storeData: async function (data) {        
-        try {            
-            console.log("adding:", data);
-            projectData.push(data);
-            console.log("all data:", projectData);
-        } catch(error) {
-            console.log("error", error);
-        }
+    storeData: async function (data) { 
+        console.log("adding:", data);
+        projectData.push(data);
+        console.log("all data:", projectData);  
     },
 
-    getData: async function () {        
-        try {            
-            return projectData;
-        } catch(error) {
-            console.log("error", error);
-        }
+    getData: async function () {         
+        return projectData;
     }
 }
 
