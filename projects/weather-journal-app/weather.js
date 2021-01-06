@@ -8,7 +8,7 @@ const requests = require('./requests.js');
 
 module.exports = {
     getWeather: async function (city_name) {
-        const url = base_url+city_name+api_key_prefix+api_key;
+        const url = `${base_url}${city_name}${api_key_prefix}${api_key}`;
         try {
             const data = await requests.getData(url);        
             return data;
