@@ -3,6 +3,7 @@ const router = express.Router();
 
 const weather = require('./weather.js');
 const persistence = require('./persistence.js');
+const errors = require('./shared/errors.js');
 
 router.post('/weather', async function(req, res) {        
         try {
@@ -11,8 +12,14 @@ router.post('/weather', async function(req, res) {
             res.send({
                 temperatureDegreesCelcius: temperatureCelsius
             });
-        } catch(error) {
-            console.log("error", error);
+        } catch(error) {            
+            console.log("routes error", error);
+            if (error instanceof errors.HttpError) {                
+                res.status(error.status_code).send(error.message);
+                return
+            }
+            res.status(500)
+            res.send(error)
         } 
 })
 

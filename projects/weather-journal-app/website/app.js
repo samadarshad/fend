@@ -18,13 +18,22 @@ async function respondToClick () {
 async function addNewEntry() {
     const newDate = new Date().toDateString();
     let newEntry = new share.dataScheme(null, newDate, feelings.value, zip.value);
-    const weatherData = await requests.postData('/api/weather', newEntry.location);
-    newEntry.temperatureDegreesCelcius = weatherData.temperatureDegreesCelcius;
-    await requests.postData('/api/add', newEntry);
+    try {
+        const weatherData = await requests.postData('/api/weather', newEntry.location);
+        newEntry.temperatureDegreesCelcius = weatherData.temperatureDegreesCelcius;
+        await requests.postData('/api/add', newEntry);
+    } catch (error) {
+        console.log("app error", error);
+    }
 }
+
 async function updateUI() {
-    const data = await requests.getData('/api/mostrecent');
-    date.innerText = data.date;
-    temp.innerText = data.temperatureDegreesCelcius;
-    content.innerText = data.user_input;
+    try {
+        const data = await requests.getData('/api/mostrecent');
+        date.textContent = data.date;
+        temp.textContent = data.temperatureDegreesCelcius;
+        content.textContent = data.user_input;
+    } catch (error) {
+        console.log("error", error);
+    }
 }
