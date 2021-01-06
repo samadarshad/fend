@@ -3,24 +3,26 @@ require('dotenv').config()
 const api_key = process.env.WEATHER_API_KEY;
 const base_url = process.env.WEATHER_BASE_URL;
 const api_key_prefix = process.env.WEATHER_API_KEY_PREFIX;
+const temperature_units = process.env.WEATHER_API_TEMPERATURE_UNITS;
 
 const requests = require('./server-side-requests');
 
 module.exports = {
-    getTemperatureCelsius: async function (city_name) {        
+    getTemperatureCelsius: async function (location) {        
         try {
-            const weatherData = await getWeather(city_name);             
-            return KelvinToCelsius(weatherData.main.temp);
+            const zip = location.zip
+            const weatherData = await getWeather(zip);     
+            return weatherData.main.temp;
         } catch(error) {
             console.log("error", error);
         }
     }
 }
 
-const KelvinToCelsius = (kelvin) => (kelvin - 273.15).toFixed(2);
 
-const getWeather = async (city_name) => {
-    const url = `${base_url}${city_name}${api_key_prefix}${api_key}`;
+
+const getWeather = async (zip) => {
+    const url = `${base_url}${zip}${temperature_units}${api_key_prefix}${api_key}`;
     try {
         const data = await requests.getData(url);        
         return data;

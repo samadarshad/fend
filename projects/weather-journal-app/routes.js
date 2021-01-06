@@ -5,11 +5,13 @@ const weather = require('./weather.js');
 const requests = require('./server-side-requests');
 const persistence = require('./persistence.js');
 
-router.get('/weather', async function(req, res) {        
+router.post('/weather', async function(req, res) {        
         try {
-            const temperatureCelsius = await weather.getTemperatureCelsius("london");
+            const location = req.body;
+            console.log(location)
+            const temperatureCelsius = await weather.getTemperatureCelsius(location);
             res.send({
-                temperature: temperatureCelsius
+                temperatureDegreesCelcius: temperatureCelsius
             });
         } catch(error) {
             console.log("error", error);
@@ -44,5 +46,15 @@ router.get('/all', async function (req, res) {
         console.log("error", error);
     }
 })
+
+router.get('/mostrecent', async function (req, res) {
+    try {
+        const data = await persistence.getData();
+        res.send(data[data.length - 1]) 
+    } catch (error) {
+        console.log("error", error);
+    }
+})
+
 
 module.exports = router;

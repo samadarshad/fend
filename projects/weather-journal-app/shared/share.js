@@ -9,7 +9,7 @@
               this.temperatureDegreesCelcius = temperatureDegreesCelcius;
               this.date = date;
               this.user_input = user_input;
-              this.zip = zip;
+              this.location = {zip: zip};
          }
          getDisplayData() {
                let data = {

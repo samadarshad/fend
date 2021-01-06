@@ -26,7 +26,7 @@
                               body: JSON.stringify(data),
                     });
      
-                     const newData = response.json();
+                    const newData = response.json();
                     return newData
                } catch(error) {
                     console.log("error", error);
