@@ -13,7 +13,7 @@ module.exports = {
         try {
             const zip = location.zip
             const weatherData = await getWeather(zip);
-            console.log(weatherData)
+            
             if (weatherData.cod != '200') {
                 const error = new errors.HttpError(weatherData.cod, weatherData.message);
                 return Promise.reject(error)
@@ -31,6 +31,6 @@ const getWeather = async (zip) => {
         const data = await requests.getData(url);        
         return data;
     } catch(error) {
-        console.log("error", error);
+        console.log("weather error", error);
     }
 }
