@@ -15,3 +15,7 @@ Go to localhost:3000
 
 ## Tests
 `sudo npm run tests`
+Note the tests rely on https://beeceptor.com/console/abdus-samad-weather-journal-test being live. 
+
+## Errors
+Errors are handled by logging to the server console, and sending to the client in the form `Error: <status_code>`.
