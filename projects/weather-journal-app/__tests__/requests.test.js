@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 const requestsService = require('../shared/requests.js');
 const request = new requestsService.requestsService(fetch);
 
