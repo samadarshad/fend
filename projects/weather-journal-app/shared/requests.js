@@ -8,10 +8,14 @@
           getData = async function ( url = '' ) {         
                try {
                     const response = await this.fetch(url); 
+                    if (!response.ok) {
+                         return Promise.reject(new Error(response.status));
+                    }
                     const newData = response.json();
                     return newData
                } catch(error) {
                     console.log("getData error", error);
+                    throw new Error(error);
                }
           }
 
@@ -32,6 +36,7 @@
                     return newData
                } catch(error) {
                     console.log("postData error", error);
+                    throw new Error(error);
                }
           };
 
