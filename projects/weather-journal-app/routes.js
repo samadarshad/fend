@@ -7,7 +7,6 @@ const persistence = require('./persistence.js');
 router.post('/weather', async function(req, res) {        
         try {
             const location = req.body;
-            console.log(location)
             const temperatureCelsius = await weather.getTemperatureCelsius(location);
             res.send({
                 temperatureDegreesCelcius: temperatureCelsius
