@@ -7,8 +7,10 @@ const persistence = require('./persistence.js');
 
 router.get('/weather', async function(req, res) {        
         try {
-            const data = await weather.getWeather("london");
-            res.send(data);
+            const temperatureCelsius = await weather.getTemperatureCelsius("london");
+            res.send({
+                temperature: temperatureCelsius
+            });
         } catch(error) {
             console.log("error", error);
         } 
