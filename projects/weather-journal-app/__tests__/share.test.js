@@ -10,4 +10,6 @@ test('shared data object', () => {
     expect(newData.temperatureDegreesCelcius).toBe(25);
     expect(newData.date).toBe("1/2/2020");
     expect(newData.user_input).toBe("happy");
+
+    console.log(newData.getDisplayData())
 });
