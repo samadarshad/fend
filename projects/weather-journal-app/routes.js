@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const weather = require('./weather.js');
-const requests = require('./server-side-requests');
 const persistence = require('./persistence.js');
 
 router.post('/weather', async function(req, res) {        
@@ -16,16 +15,6 @@ router.post('/weather', async function(req, res) {
         } catch(error) {
             console.log("error", error);
         } 
-})
-
-router.get('/testpost', async function(req, res) {
-    try {
-        const data = await requests.postData('https://proud-bush-7085.getsandbox.com/users', {'data':'test2'})
-        res.send(data);
-    } catch(error) {
-        console.log("error", error);
-    } 
-    
 })
 
 router.post('/add', async function(req, res) {
@@ -55,6 +44,5 @@ router.get('/mostrecent', async function (req, res) {
         console.log("error", error);
     }
 })
-
 
 module.exports = router;

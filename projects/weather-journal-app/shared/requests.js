@@ -7,11 +7,11 @@
 
           getData = async function ( url = '' ) {         
                try {
-               const response = await this.fetch(url); 
-               const newData = response.json();
-               return newData
+                    const response = await this.fetch(url); 
+                    const newData = response.json();
+                    return newData
                } catch(error) {
-               console.log("error", error);
+                    console.log("error", error);
                }
           }
 
@@ -24,8 +24,7 @@
                               'Content-Type': 'application/json',
                          },
                               body: JSON.stringify(data),
-                    });
-     
+                    });     
                     const newData = response.json();
                     return newData
                } catch(error) {

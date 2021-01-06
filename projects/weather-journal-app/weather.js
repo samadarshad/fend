@@ -19,8 +19,6 @@ module.exports = {
     }
 }
 
-
-
 const getWeather = async (zip) => {
     const url = `${base_url}${zip}${temperature_units}${api_key_prefix}${api_key}`;
     try {
