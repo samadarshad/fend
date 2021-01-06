@@ -1,4 +1,15 @@
-(function(exports){
+(function(exports){ 
+
+     exports.requestsService = class {
+          constructor(fetchS) {
+               this.fetchS = fetchS
+               console.log("fetchS prints", fetchS.foo())
+          }
+          getDisplayData() {
+               console.log("getDisplayData fetchS prints", this.fetchS.foo())
+               return this.fetchS.foo();
+          }
+     };
 
     exports.getData = async function ( url = '' ) {         
           try {
