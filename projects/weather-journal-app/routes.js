@@ -3,7 +3,7 @@ const router = express.Router();
 
 const weather = require('./weather.js');
 const persistence = require('./persistence.js');
-const errors = require('./shared/errors.js');
+const errors = require('./errors.js');
 
 function sendErrorToClient(error, res) {
     if (error instanceof errors.HttpError) {                

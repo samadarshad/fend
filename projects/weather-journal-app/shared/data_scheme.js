@@ -9,4 +9,4 @@
          }
     };
   
-  }(typeof exports === 'undefined' ? this.share = {} : exports));
+  }(typeof exports === 'undefined' ? this.data_scheme = {} : exports));

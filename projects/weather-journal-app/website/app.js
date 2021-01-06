@@ -22,7 +22,7 @@ async function respondToClick () {
 
 async function addNewEntry() {
     const newDate = new Date().toDateString();
-    let newEntry = new share.dataScheme(null, newDate, feelings.value, zip.value);
+    let newEntry = new data_scheme.dataScheme(null, newDate, feelings.value, zip.value);
     try {
         const weatherData = await requests.postData('/api/weather', newEntry.location);
         newEntry.temperatureDegreesCelcius = weatherData.temperatureDegreesCelcius;
