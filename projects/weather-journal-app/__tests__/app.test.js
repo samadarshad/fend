@@ -4,16 +4,16 @@ const supertest = require('supertest')
 const app = createServer();
 const request = supertest(app)
 
-describe('test /all', () => {
+describe('test /mostrecent', () => {
     it('get', async done => {
-        const response = await request.get('/api/all')
+        const response = await request.get('/api/mostrecent')
     
         expect(response.status).toBe(200)
         done()
     })
 
     it('post', async done => {
-        const response = await request.post('/api/all')
+        const response = await request.post('/api/mostrecent')
     
         expect(response.status).toBe(404)
         done()
@@ -33,8 +33,8 @@ describe('test /add', () => {
     })
 
     it('get', async done => {
-        const response = await request.get('/api/all')    
-        expect(response.body).toContainEqual(data)
+        const response = await request.get('/api/mostrecent')    
+        expect(response.body).toStrictEqual(data)
         done()
     })
 })
