@@ -46,7 +46,7 @@ router.get('/all', async function (req, res) {
 router.get('/mostrecent', async function (req, res) {
     try {
         const data = await persistence.getData();
-        res.send(data[data.length - 1]) 
+        res.send(data) 
     } catch (error) {
         console.log("routes error", error);
         sendErrorToClient(error, res);

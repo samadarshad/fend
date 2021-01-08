@@ -1,10 +1,9 @@
-const projectData = [];
+let projectData = {};
 
 module.exports = {
-    storeData: async function (data) { 
-        console.log("adding:", data);
-        projectData.push(data);
-        console.log("all data:", projectData);  
+    storeData: async function (data) {
+        projectData = data;  
+        console.log("projectData:", data);
     },
 
     getData: async function () {         

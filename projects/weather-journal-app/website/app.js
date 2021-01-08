@@ -30,7 +30,7 @@ async function addNewEntry() {
 
 async function updateUI() {
     const data = await requests.getData('/api/mostrecent');
-    date.textContent = data.date;
-    temp.textContent = data.temperatureDegreesCelcius;
-    content.textContent = data.user_input;
+    date.innerHTML = data.date;
+    temp.innerHTML = data.temperatureDegreesCelcius;
+    content.innerHTML = data.user_input;
 }
