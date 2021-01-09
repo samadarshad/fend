@@ -12,6 +12,13 @@ import './styles/header.scss'
 
 console.log(checkForName);
 
+let user_input = document.getElementsByClassName('user-input');
+for (const element of user_input) {
+    element.addEventListener("submit", function(event) {
+        Client.handleSubmit(event)
+    })
+}
+
 export {
     checkForName,
     handleSubmit,
