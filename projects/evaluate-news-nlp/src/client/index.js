@@ -16,3 +16,5 @@ export {
     checkForName,
     handleSubmit
 }
+
+console.log("hello")
