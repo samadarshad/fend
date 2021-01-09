@@ -1,5 +1,8 @@
 import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
+import { requestsService } from '../shared/requests.js'
+
+import "regenerator-runtime/runtime";
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -9,12 +12,8 @@ import './styles/header.scss'
 
 console.log(checkForName);
 
-// alert("I EXIST")
-console.log("CHANGE!!");
-
 export {
     checkForName,
-    handleSubmit
+    handleSubmit,
+    requestsService
 }
-
-console.log("hello")
