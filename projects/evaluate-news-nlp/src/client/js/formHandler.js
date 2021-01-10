@@ -17,8 +17,3 @@ export async function sendForm() {
     return res
 }
 
-export async function updateUI(data) {    
-    const dataStr = JSON.stringify(data)
-    console.log(data.sentence_list[0].text)
-    document.getElementById('results').innerHTML = dataStr
-}
