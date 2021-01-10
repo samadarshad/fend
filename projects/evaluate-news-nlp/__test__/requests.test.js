@@ -1,6 +1,7 @@
+import "regenerator-runtime/runtime";
 const fetch = require('node-fetch');
-const requestsService = require('../src/shared/requests.js');
-const request = new requestsService.requestsService(fetch);
+const requestsServiceClass = require('../src/shared/requests.js');
+const request = new requestsServiceClass(fetch);
 
 // assumed to be always online
 const onlineTestApiEndpoint = 'https://abdus-samad-weather-journal-test.free.beeceptor.com'

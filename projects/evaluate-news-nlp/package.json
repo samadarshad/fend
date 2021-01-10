@@ -8,6 +8,11 @@
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack-dev-server --config webpack.dev.js --open"
   },
+  "jest": {
+    "globals": {
+      "SERVER_BASE_ENDPOINT_URL": "http://localhost:3000/api"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
