@@ -1,7 +1,3 @@
-// require('dotenv').config()
-
-// const serverEndpointBaseUrl = process.env.SERVER_BASE_ENDPOINT_URL;
-
 export async function respondToSubmit (event) {
     try {
         event.preventDefault()
@@ -12,14 +8,14 @@ export async function respondToSubmit (event) {
     }
 }
 
-const serverEndpointBaseUrl = 'http://localhost:3000/api'
+console.log(`SERVER_BASE_ENDPOINT_URL ${SERVER_BASE_ENDPOINT_URL}`)
 
 export async function sendForm() {
     let formText = document.getElementById('name').value
     const requests = Client.clientSideRequests()
     const messageMaker = new Client.messageScheme();
-    const jsonMessage = messageMaker.getJson(formText)
-    const res = await requests.postData(`${serverEndpointBaseUrl}/sentiment`, jsonMessage);
+    const jsonMessage = messageMaker.getJson(formText)    
+    const res = await requests.postData(`${SERVER_BASE_ENDPOINT_URL}/sentiment`, jsonMessage);
     return res
 }
 
