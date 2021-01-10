@@ -11,22 +11,9 @@ router.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-router.get('/test', async function (req, res) {
-    try {
-        const inputText = req.body;
-        const sentimentData = await textApi.getSentimentData(inputText);
-        res.send(sentimentData)
-    } catch (error) {
-        console.log("routes error", error);
-        sendErrorToClient(error, res);
-    }    
-})
-
 router.post('/sentiment', async function (req, res) {
     try {
         const inputText = req.body;
-        // const inputText = req.body.message;
-        console.log("inputText", inputText)
         const sentimentData = await textApi.getSentimentData(inputText);
         res.send(sentimentData)
     } catch (error) {

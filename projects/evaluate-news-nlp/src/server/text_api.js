@@ -8,7 +8,8 @@ const messageScheme = require('../shared/messageScheme');
 
 module.exports = {
     getSentimentData: async function (text) { 
-        const message = messageScheme.getMessage(text);
+        const messageParser = new messageScheme();
+        const message = messageParser.getMessage(text);
         const sentimentData = await getSentiment(message);
         return sentimentData;
     }
