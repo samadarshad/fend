@@ -13,6 +13,11 @@ module.exports = {
         libraryTarget: 'var',
         library: 'Client'
     },
+    resolve: {
+        alias: {
+            Shared: path.resolve(__dirname, 'src/shared/')
+        }
+    },
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
