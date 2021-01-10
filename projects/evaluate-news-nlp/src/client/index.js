@@ -24,12 +24,12 @@ for (const element of user_input) {
     console.log("addEventListener");
     element.addEventListener("submit", function(e) {
      e.preventDefault();
-    //  Client.respondToSubmit(e);
+     Client.respondToSubmit(e);
 
-        const fetch = window.fetch.bind(window);
-        const requests = new Client.requestsServiceClass(fetch);
-        requests.testR();
-        console.log("end test");
+        // const fetch = window.fetch.bind(window);
+        // const requests = new Client.requestsServiceClass(fetch);
+        // requests.testR();
+        // console.log("end test");
     });
     // element.addEventListener("submit", Client.respondToSubmit);
 }

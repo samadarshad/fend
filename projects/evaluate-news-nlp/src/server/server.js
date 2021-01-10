@@ -9,7 +9,6 @@ function createServer() {
     app.use(bodyParser.json());
     app.use(cors());
     app.use(express.static('dist'));
-    app.use(express.static('shared'));
     app.use('/api', routes);
     return app
 }

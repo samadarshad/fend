@@ -13,8 +13,6 @@ export async function respondToSubmit (event) {
 
 export async function handleSubmit(event) {
     event.preventDefault()
-    // Client.test()
-    // check what text was put into the form field
     let formText = document.getElementById('name').value
     Client.checkForName(formText)
 
