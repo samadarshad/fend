@@ -37,7 +37,7 @@
 //   }(typeof exports === 'undefined' ? this.requestsServiceModule = {} : exports));
 
 export function test () {
-     console.log("hello")
+     console.log("hello client request")
  }
 
 export default class requestsServiceClass {

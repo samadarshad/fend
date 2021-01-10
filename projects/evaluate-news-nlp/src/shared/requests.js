@@ -1,12 +1,15 @@
 (function(exports){ 
 
-     exports.requestsService = class {
+     exports.requestsServiceClass = class {
           constructor(fetch) {
                this.fetch = fetch
           }
 
+          test = function () {
+               console.log("shared hello")
+          }
+
           getData = async function ( url = '' ) { 
-               console.log("getData")
                const response = await this.fetch(url); 
                if (!response.ok) {
                     return Promise.reject(new Error(response.status));
@@ -34,4 +37,4 @@
           
      };  
   
-  }(typeof exports === 'undefined' ? this.requestsService = {} : exports));
+  }(typeof exports === 'undefined' ? this.requestsServiceModule = {} : exports));
