@@ -2,7 +2,7 @@ import { checkForName } from './js/nameChecker'
 import { respondToSubmit, handleSubmit } from './js/formHandler'
 import requestsServiceClass from './js/requests'
 import { test } from './js/requests'
-// import { testshare } from '../shared/testshare.js'
+import { testshare } from 'Shared/testshare.js'
 // import { requestsService } from '../shared/requests.js'
 
 import "regenerator-runtime/runtime";
@@ -20,7 +20,7 @@ export {
     respondToSubmit,
     handleSubmit,
     requestsServiceClass, 
-    // testshare,
+    testshare,
     test
 }
 // console.log("testing");
@@ -46,6 +46,7 @@ for (const element of user_input) {
         const requests = new Client.requestsServiceClass(fetch);
         requests.testR();
         Client.test()
+        Client.testshare()
         console.log("end test");
     });
     // element.addEventListener("submit", Client.respondToSubmit);

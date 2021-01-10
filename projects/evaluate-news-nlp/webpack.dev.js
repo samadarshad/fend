@@ -9,6 +9,11 @@ module.exports = {
         libraryTarget: 'var',
         library: 'Client'
     },
+    resolve: {
+        alias: {
+            Shared: path.resolve(__dirname, 'src/shared/')
+        }
+    },
     mode: 'development',
     devtool: 'source-map',
     module: {

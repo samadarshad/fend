@@ -1,3 +1,3 @@
-export default function testshare () {
+export function testshare () {
     console.log("hello shared")
 }
