@@ -1,5 +1,5 @@
 import { checkForName } from './js/nameChecker'
-import { respondToSubmit, handleSubmit } from './js/formHandler'
+import { respondToSubmit, sendForm, updateUI } from './js/formHandler'
 import requestsServiceClass from 'Shared/requests.js'
 import { clientSideRequests } from './js/client-side-requests'
 
@@ -14,10 +14,14 @@ import './styles/header.scss'
 console.log("index started");
 
 export {
-    checkForName,    
-    respondToSubmit,
-    handleSubmit,
+    checkForName,   
+
+    respondToSubmit,    
+    updateUI,
+    sendForm,
+
     requestsServiceClass,
+    
     clientSideRequests
 }
 
