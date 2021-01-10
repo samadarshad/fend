@@ -10,12 +10,7 @@ export async function respondToSubmit (event) {
 
 export async function sendForm() {
     let formText = document.getElementById('name').value
-    Client.checkForName(formText)
-
-    console.log("::: Form Submitted :::")
-
     const requests = Client.clientSideRequests()
-    requests.testR();
     const messageMaker = new Client.messageScheme();
     const jsonMessage = messageMaker.getJson(formText)
     const res = await requests.postData('http://localhost:3000/api/sentiment', jsonMessage);

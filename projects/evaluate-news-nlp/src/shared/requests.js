@@ -3,10 +3,6 @@ class requestsServiceClass {
           this.fetch = fetch
      }
 
-     testR = function () {
-          console.log("hello requestsServiceClass2")
-      }
-
      getData = async function ( url = '' ) {
           const response = await this.fetch(url); 
           if (!response.ok) {
@@ -16,8 +12,7 @@ class requestsServiceClass {
           return newData
      }
 
-     postData = async function ( url = '', data = {}) { 
-          console.log("postData", data)
+     postData = async function ( url = '', data = {}) {
           const response = await this.fetch(url, {
                method: 'POST',
                credentials: 'same-origin',
