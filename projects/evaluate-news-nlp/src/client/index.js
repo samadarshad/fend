@@ -1,9 +1,6 @@
 import { checkForName } from './js/nameChecker'
 import { respondToSubmit, handleSubmit } from './js/formHandler'
-import requestsServiceClass from './js/requests'
-import { test } from './js/requests'
-import { testshare } from 'Shared/testshare.js'
-// import { requestsService } from '../shared/requests.js'
+import requestsServiceClass from 'Shared/requests.js'
 
 import "regenerator-runtime/runtime";
 
@@ -19,17 +16,8 @@ export {
     checkForName,    
     respondToSubmit,
     handleSubmit,
-    requestsServiceClass, 
-    testshare,
-    test
+    requestsServiceClass
 }
-// console.log("testing");
-// const fetch = window.fetch.bind(window);
-// const requests = new Client.requestsServiceClass(fetch);
-// requests.testR();
-// // console.log(Client.testshare())
-// // console.log(Client.test())
-// console.log("end test");
 
 let user_input = document.getElementsByClassName('user-input');
 for (const element of user_input) {
@@ -38,15 +26,9 @@ for (const element of user_input) {
      e.preventDefault();
     //  Client.respondToSubmit(e);
 
-
-
-
-        console.log("testing");
         const fetch = window.fetch.bind(window);
         const requests = new Client.requestsServiceClass(fetch);
         requests.testR();
-        Client.test()
-        Client.testshare()
         console.log("end test");
     });
     // element.addEventListener("submit", Client.respondToSubmit);
