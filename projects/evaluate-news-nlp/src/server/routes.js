@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mockAPIResponse = require('./mockAPI.js')
+
 const textApi = require('./text_api.js');
 
 function sendErrorToClient(error, res) {
@@ -12,8 +12,14 @@ router.get('/', function (req, res) {
 })
 
 router.get('/test', async function (req, res) {
-    const data = await textApi.getSentimentData("abc");
-    res.send(data)
+    try {
+        const inputText = req.body;
+        const sentimentData = await textApi.getSentimentData(inputText);
+        res.send(sentimentData)
+    } catch (error) {
+        console.log("routes error", error);
+        sendErrorToClient(error, res);
+    }    
 })
 
 module.exports = router;

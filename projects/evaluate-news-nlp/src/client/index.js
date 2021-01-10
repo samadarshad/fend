@@ -1,6 +1,7 @@
 import { checkForName } from './js/nameChecker'
 import { respondToSubmit, handleSubmit } from './js/formHandler'
 import requestsServiceClass from 'Shared/requests.js'
+import { clientSideRequests } from './js/client-side-requests'
 
 import "regenerator-runtime/runtime";
 
@@ -16,21 +17,12 @@ export {
     checkForName,    
     respondToSubmit,
     handleSubmit,
-    requestsServiceClass
+    requestsServiceClass,
+    clientSideRequests
 }
 
 let user_input = document.getElementsByClassName('user-input');
 for (const element of user_input) {
-    console.log("addEventListener");
-    element.addEventListener("submit", function(e) {
-     e.preventDefault();
-     Client.respondToSubmit(e);
-
-        // const fetch = window.fetch.bind(window);
-        // const requests = new Client.requestsServiceClass(fetch);
-        // requests.testR();
-        // console.log("end test");
-    });
-    // element.addEventListener("submit", Client.respondToSubmit);
+    element.addEventListener("submit", e => Client.respondToSubmit(e) );
 }
 

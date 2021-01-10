@@ -1,7 +1,3 @@
-// import { requestsService } from '../shared/requests.js'
-
-// Client.requestsServiceModule.requestsService(fetch);
-
 export async function respondToSubmit (event) {
     try {
         await Client.handleSubmit(event)
@@ -18,8 +14,7 @@ export async function handleSubmit(event) {
 
     console.log("::: Form Submitted :::")
 
-    const fetch = window.fetch.bind(window);
-    const requests = new Client.requestsServiceClass(fetch);
+    const requests = Client.clientSideRequests()
     requests.testR();
     const res = await requests.getData('http://localhost:3000/api/test');
     
