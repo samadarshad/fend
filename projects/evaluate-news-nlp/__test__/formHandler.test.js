@@ -1,11 +1,8 @@
-require('dotenv').config('/src/client/.env')
-
 import { sendForm } from "../src/client/js/formHandler"
 
 // The describe() function takes two arguments - a string description, and a test suite as a callback function.  
 // A test suite may contain one or more related tests    
 describe("Testing the submit functionality", () => {
-    console.log(SERVER_BASE_ENDPOINT_URL)
     // The test() function has two arguments - a string description, and an actual test as a callback function.  
     test("Testing the sendForm() function", () => {
            // Define the input for the function, if any, in the form of variables/array
