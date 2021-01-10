@@ -16,10 +16,13 @@ export async function sendForm() {
 
     const requests = Client.clientSideRequests()
     requests.testR();
-    const res = await requests.getData('http://localhost:3000/api/test');
+    const messageMaker = new Client.messageScheme();
+    const jsonMessage = messageMaker.getJson(formText)
+    const res = await requests.postData('http://localhost:3000/api/sentiment', jsonMessage);
     return res
 }
 
 export async function updateUI(data) {    
+    console.log(data)
     document.getElementById('results').innerHTML = data.sentence_list[0].text    
 }

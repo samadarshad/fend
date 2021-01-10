@@ -7,8 +7,7 @@ class requestsServiceClass {
           console.log("hello requestsServiceClass2")
       }
 
-     getData = async function ( url = '' ) { 
-          console.log("getData")
+     getData = async function ( url = '' ) {
           const response = await this.fetch(url); 
           if (!response.ok) {
                return Promise.reject(new Error(response.status));
@@ -18,6 +17,7 @@ class requestsServiceClass {
      }
 
      postData = async function ( url = '', data = {}) { 
+          console.log("postData", data)
           const response = await this.fetch(url, {
                method: 'POST',
                credentials: 'same-origin',

@@ -2,6 +2,7 @@ import { checkForName } from './js/nameChecker'
 import { respondToSubmit, sendForm, updateUI } from './js/formHandler'
 import requestsServiceClass from 'Shared/requests.js'
 import { clientSideRequests } from './js/client-side-requests'
+import messageScheme from 'Shared/messageScheme.js'
 
 import "regenerator-runtime/runtime";
 
@@ -21,8 +22,10 @@ export {
     sendForm,
 
     requestsServiceClass,
-    
-    clientSideRequests
+
+    clientSideRequests,
+
+    messageScheme
 }
 
 let user_input = document.getElementsByClassName('user-input');
