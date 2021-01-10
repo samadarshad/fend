@@ -23,6 +23,7 @@ export async function sendForm() {
 }
 
 export async function updateUI(data) {    
-    console.log(data)
-    document.getElementById('results').innerHTML = data.sentence_list[0].text    
+    const dataStr = JSON.stringify(data)
+    console.log(data.sentence_list[0].text)
+    document.getElementById('results').innerHTML = dataStr
 }
