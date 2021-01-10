@@ -1,6 +1,8 @@
 import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
-import { requestsService } from '../shared/requests.js'
+import { respondToSubmit, handleSubmit } from './js/formHandler'
+import requestsServiceClass from './js/requests'
+import { test } from './js/requests'
+// import { requestsService } from '../shared/requests.js'
 
 import "regenerator-runtime/runtime";
 
@@ -10,17 +12,26 @@ import './styles/form.scss'
 import './styles/footer.scss'
 import './styles/header.scss'
 
-console.log(checkForName);
+console.log("index started");
+
+export {
+    checkForName,    
+    respondToSubmit,
+    handleSubmit,
+    requestsServiceClass, 
+    test
+}
 
 let user_input = document.getElementsByClassName('user-input');
 for (const element of user_input) {
-    element.addEventListener("submit", function(event) {
-        Client.handleSubmit(event)
-    })
+    console.log("addEventListener");
+    element.addEventListener("submit", function(e) {
+     e.preventDefault();
+     Client.respondToSubmit(e);
+        // const fetch = window.fetch.bind(window);
+        // const requests = new Client.requestsServiceClass(fetch);
+        // requests.testR();
+    });
+    // element.addEventListener("submit", Client.respondToSubmit);
 }
 
-export {
-    checkForName,
-    handleSubmit,
-    requestsService
-}

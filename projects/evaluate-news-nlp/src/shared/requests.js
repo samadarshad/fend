@@ -1,5 +1,3 @@
-// import "regenerator-runtime/runtime";
-
 (function(exports){ 
 
      exports.requestsService = class {
@@ -8,6 +6,7 @@
           }
 
           getData = async function ( url = '' ) { 
+               console.log("getData")
                const response = await this.fetch(url); 
                if (!response.ok) {
                     return Promise.reject(new Error(response.status));

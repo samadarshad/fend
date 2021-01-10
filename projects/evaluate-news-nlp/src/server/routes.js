@@ -7,18 +7,13 @@ function sendErrorToClient(error, res) {
     res.status(error.message).send(error)  
 }
 
-router.post('/add', async function(req, res) {
-    res.send({success: "ok"})
-})
-
 router.get('/', function (req, res) {
     res.sendFile('dist/index.html')
-    // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
-router.get('/test', function (req, res) {
-    // res.send(mockAPIResponse)
-    res.send(textApi.getSentimentData("abc"))
+router.get('/test', async function (req, res) {
+    const data = await textApi.getSentimentData("abc");
+    res.send(data)
 })
 
 module.exports = router;
