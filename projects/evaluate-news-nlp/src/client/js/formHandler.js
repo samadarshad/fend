@@ -12,10 +12,7 @@ export async function respondToSubmit (event) {
 console.log(`SERVER_BASE_ENDPOINT_URL ${SERVER_BASE_ENDPOINT_URL}`)
 
 export async function sendForm(text) {
-    
-    // const requests = Client.clientSideRequests()
-    // const messageMaker = new Client.messageScheme();
-    const jsonMessage = new Client.messageScheme().getJson(text)    
+    const jsonMessage = new Client.messageScheme().getJson(text)
     const res = await Client.clientSideRequests().postData(`${SERVER_BASE_ENDPOINT_URL}/sentiment`, jsonMessage);
     return res
 }
