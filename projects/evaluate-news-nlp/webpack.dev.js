@@ -2,18 +2,35 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const dotenv = require('dotenv')
+const client_env = dotenv.config({path:__dirname+'/src/client/.dev_env'}).parsed;
 
 module.exports = {
     entry: './src/client/index.js',
+    output: {
+        libraryTarget: 'var',
+        library: 'Client'
+    },
+    resolve: {
+        alias: {
+            Shared: path.resolve(__dirname, 'src/shared/')
+        }
+    },
     mode: 'development',
     devtool: 'source-map',
-    stats: 'verbose',
+    node : {
+        fs: "empty"
+    },
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test: /\.scss$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             }
         ]
     },
@@ -30,6 +47,10 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
+        }),
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify(client_env)
         })
     ]
+
 }

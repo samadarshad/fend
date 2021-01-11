@@ -1,16 +1,21 @@
-function handleSubmit(event) {
-    event.preventDefault()
+const SERVER_BASE_ENDPOINT_URL = process.env.SERVER_BASE_ENDPOINT_URL
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    checkForName(formText)
-
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })
+export async function respondToSubmit (event) {
+    try {
+        event.preventDefault()
+        let formText = document.getElementById('name').value
+        const data = await Client.sendForm(formText)
+        await Client.updateUI(data);
+    } catch (error) {
+        console.log("respondToSubmit error", error);
+    }
 }
 
-export { handleSubmit }
+console.log(`SERVER_BASE_ENDPOINT_URL ${SERVER_BASE_ENDPOINT_URL}`)
+
+export async function sendForm(text) {
+    const jsonMessage = new Client.messageScheme().getJson(text)
+    const res = await Client.clientSideRequests().postData(`${SERVER_BASE_ENDPOINT_URL}/sentiment`, jsonMessage);
+    return res
+}
+

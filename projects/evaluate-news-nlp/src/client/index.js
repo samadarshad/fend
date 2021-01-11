@@ -1,7 +1,28 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
+import { respondToSubmit, sendForm } from './js/formHandler'
+import { updateUI } from './js/ui'
+import requestsServiceClass from 'Shared/requests.js'
+import { clientSideRequests } from './js/client-side-requests'
+import messageScheme from 'Shared/messageScheme.js'
 
-console.log(checkForName);
+import "regenerator-runtime/runtime";
 
-alert("I EXIST")
-console.log("CHANGE!!");
+import './styles/resets.scss'
+import './styles/base.scss'
+import './styles/form.scss'
+import './styles/footer.scss'
+import './styles/header.scss'
+
+export {
+    respondToSubmit,    
+    updateUI,
+    sendForm,
+    requestsServiceClass,
+    clientSideRequests,
+    messageScheme
+}
+
+let user_input = document.getElementsByClassName('user-input');
+for (const element of user_input) {
+    element.addEventListener("submit", e => Client.respondToSubmit(e) );
+}
+
