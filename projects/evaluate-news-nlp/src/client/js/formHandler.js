@@ -1,4 +1,3 @@
-// require('dotenv').config()
 const SERVER_BASE_ENDPOINT_URL = process.env.SERVER_BASE_ENDPOINT_URL
 
 export async function respondToSubmit (event) {
