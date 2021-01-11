@@ -4,10 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node src/server/start.js",
-    "build-prod": "webpack --config webpack.prod.js",
+    "start": "echo start; node src/server/start.js",
+    "build-prod": "echo build-prod; webpack --config webpack.prod.js",
     "build-dev": "webpack-dev-server --config webpack.dev.js --open",
-    "heroku-postbuild": "webpack --config webpack.prod.js"
+    "heroku-postbuild": "echo heroku-postbuild; webpack --config webpack.prod.js"
   },
   "jest": {
     "setupFiles": [
