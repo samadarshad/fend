@@ -9,6 +9,9 @@ const messageScheme = require('../shared/messageScheme');
 module.exports = {
     getSentimentData: async function (text) { 
         const message = new messageScheme().getMessage(text);
+        if (message === undefined) {
+            return Promise.reject(new Error(400));
+        }
         const sentimentData = await getSentiment(message);
         return sentimentData;
     }
