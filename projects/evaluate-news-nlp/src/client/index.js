@@ -16,11 +16,8 @@ export {
     respondToSubmit,    
     updateUI,
     sendForm,
-
     requestsServiceClass,
-
     clientSideRequests,
-
     messageScheme
 }
 

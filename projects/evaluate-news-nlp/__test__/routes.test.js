@@ -6,6 +6,7 @@ const supertest = require('supertest')
 const app = createServer();
 const request = supertest(app)
 
+// assumes the third party sentiment API is online, this is more of an integration test than a unit test
 describe('test /sentiment', () => {
     const data = new messageScheme().getJson("hello")
 
