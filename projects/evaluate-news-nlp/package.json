@@ -5,13 +5,16 @@
   "scripts": {
     "test": "jest",
     "start": "node src/server/start.js",
-    "build-prod": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "build-dev": "webpack-dev-server --config webpack.dev.js --open"
   },
   "jest": {
     "setupFiles": [
       "<rootDir>/jest/setup.js"
     ]
+  },
+  "engines": {
+    "node": "14.x"
   },
   "keywords": [],
   "author": "",
