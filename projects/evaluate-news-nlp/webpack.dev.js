@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const dotenv = require('dotenv')
-const client_env = dotenv.config({path:__dirname+'/src/client/.env'}).parsed;
+const client_env = dotenv.config({path:__dirname+'/src/client/.dev_env'}).parsed;
 
 module.exports = {
     entry: './src/client/index.js',
