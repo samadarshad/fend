@@ -5,7 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-require('dotenv').config({path:__dirname+'/src/client/.env'})
+const dotenv = require('dotenv')
+const client_env = dotenv.config({path:__dirname+'/src/client/.env'}).parsed;
 
 module.exports = {
     entry: './src/client/index.js',
@@ -46,7 +47,7 @@ module.exports = {
         new MiniCssExtractPlugin({filename: '[name].css'}),
         new WorkboxPlugin.GenerateSW(),
         new webpack.DefinePlugin({
-            SERVER_BASE_ENDPOINT_URL: JSON.stringify(process.env.SERVER_BASE_ENDPOINT_URL)
+            "process.env": JSON.stringify(client_env)
         })
     ]
 }
