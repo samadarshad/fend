@@ -1,4 +1,4 @@
-export async function updateUI(data) {
+export async function updateUI(data, document) {
     console.log(data.sentence_list[0].text)
     document.getElementById('results').innerHTML = JSON.stringify(data)
     document.getElementById('agreement').innerHTML = data.agreement

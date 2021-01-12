@@ -8,9 +8,7 @@ describe('formHandler', () => {
     
     it('sendForm is defined', async done => {
         Client.setFetch(fetch)
-        console.log("get url:", Client.getServerUrl())
-        // expect(Client.sendForm).toBeDefined();
-        const res = await Client.sendForm("Hello")
+        const res = await Client.sendForm("Hello") // this hits fetch at /api/sentiment, and that needs to be mocked/proxied
         console.log(res)
         // expect(res).toBeDefined()
         done()

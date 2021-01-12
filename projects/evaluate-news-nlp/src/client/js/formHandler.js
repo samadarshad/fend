@@ -1,9 +1,9 @@
-export async function respondToSubmit (event) {
+export async function respondToSubmit (event, document) {
     try {
         event.preventDefault()
         let formText = document.getElementById('name').value
         const data = await Client.sendForm(formText)
-        await Client.updateUI(data);
+        await Client.updateUI(data, document);
     } catch (error) {
         console.log("respondToSubmit error", error);
     }
