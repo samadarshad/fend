@@ -1,10 +1,12 @@
 const path = require('path')
 
 module.exports = {
-    entry: './src/client/ClientLib.js',
+    entry: {
+        ClientLib: ['./src/client/ClientLib.js']
+    },
     output: {
-        libraryTarget: 'var',
-        library: 'Client'
+        libraryTarget: 'umd',
+        library: 'Client',
     },
     resolve: {
         alias: {
