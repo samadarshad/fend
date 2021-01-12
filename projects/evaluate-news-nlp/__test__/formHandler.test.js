@@ -7,7 +7,6 @@ const fetch = require('node-fetch')
 describe('formHandler', () => {
     
     it('sendForm is defined', async done => {
-        console.log(Client.testabc())
         Client.setFetch(fetch)
         Client.setServerUrl('https://abdus-samad-weather-journal-test.free.beeceptor.com')
         console.log("get url:", Client.getServerUrl())
