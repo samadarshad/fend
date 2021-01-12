@@ -10,12 +10,14 @@ const client_env = dotenv.config({path:__dirname+'/src/client/.env'}).parsed;
 
 module.exports = {
     entry: {
-        index: ['./src/client/index.js']
+        ClientLib: ['./src/client/ClientLib.js']
     },
     mode: 'production',
     output: {
-        filename: '[name].js',
-        path: __dirname + '/dist',
+        libraryTarget: 'umd',
+        library: 'Client',
+        filename: 'ClientLib.js',
+        globalObject: 'this'
     },
     resolve: {
         alias: {
