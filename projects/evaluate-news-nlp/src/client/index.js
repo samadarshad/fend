@@ -1,7 +1,7 @@
 import { respondToSubmit, sendForm, testabc } from './js/formHandler'
 import { updateUI } from './js/ui'
 import requestsServiceClass from 'Shared/requests.js'
-import { clientSideRequests } from './js/client-side-requests'
+import { clientSideRequests, setFetch, getFetch, setServerUrl, getServerUrl } from './js/client-side-requests'
 import messageScheme from 'Shared/messageScheme.js'
 
 import "regenerator-runtime/runtime";
@@ -18,15 +18,22 @@ export {
     sendForm,
     requestsServiceClass,
     clientSideRequests,
+    setFetch,
+    getFetch,
+    setServerUrl,
+    getServerUrl,
     messageScheme,
 
 
     testabc
 }
 
-//TODO this shouldnt be in index.js, but somewhere else?
-let user_input = document.getElementsByClassName('user-input');
-for (const element of user_input) {
-    element.addEventListener("submit", e => Client.respondToSubmit(e) );
-}
+//TODO the below shouldnt be exported into Client Library - there should be a ClientLib.js and an index.js as output
+// perhaps the below could go onto index.html as a script?
+// const fetch = window.fetch.bind(window);
+// Client.setFetch(fetch)
+// let user_input = document.getElementsByClassName('user-input');
+// for (const element of user_input) {
+//     element.addEventListener("submit", e => Client.respondToSubmit(e) );
+// }
 

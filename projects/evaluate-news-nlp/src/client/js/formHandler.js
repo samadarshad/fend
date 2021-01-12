@@ -15,7 +15,8 @@ console.log(`SERVER_BASE_ENDPOINT_URL ${SERVER_BASE_ENDPOINT_URL}`)
 
 export async function sendForm(text) {
     const jsonMessage = new Client.messageScheme().getJson(text)
-    const res = await Client.clientSideRequests().postData(`${SERVER_BASE_ENDPOINT_URL}/sentiment`, jsonMessage);
+    const requests = new Client.requestsServiceClass(Client.getFetch());
+    const res = await requests.postData(`${Client.getServerUrl()}/sentiment`, jsonMessage);
     return res
 }
 
