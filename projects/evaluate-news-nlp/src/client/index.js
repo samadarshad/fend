@@ -10,6 +10,7 @@ import './styles/header.scss'
 // perhaps the below could go onto index.html as a script?
 const fetch = window.fetch.bind(window);
 Client.setFetch(fetch)
+Client.setServerUrl("/api")
 let user_input = document.getElementsByClassName('user-input');
 for (const element of user_input) {
     element.addEventListener("submit", e => Client.respondToSubmit(e) );
