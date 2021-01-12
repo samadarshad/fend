@@ -6,14 +6,11 @@
     "test": "jest",
     "start": "echo starting app via npm start; node src/server/start.js",
     "build-prod": "echo build-prod; webpack --config webpack.prod.js",
-    "build-prod-lib": "echo build-prod-lib; webpack --config webpack.prod.ClientLib.js",
-    "build-dev": "webpack-dev-server --config webpack.dev.js --open",
-    "heroku-postbuild": "echo heroku-postbuild; npm run build-prod"
-  },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/jest/setup.js"
-    ]
+    "build-lib": "echo build-lib; webpack --config webpack.lib.js",
+    "build-dev": "webpack-dev-server --config webpack.dev.js --open",    
+    "autostart" : "echo autostart; npm run autobuild; npm run start",
+    "autobuild" : "echo autobuild; npm run build-lib; npm run build-prod",
+    "heroku-postbuild": "echo heroku-postbuild; npm run autobuild"
   },
   "engines": {
     "node": "14.x"
