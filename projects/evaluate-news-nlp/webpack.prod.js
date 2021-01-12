@@ -12,8 +12,10 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
     output: {
-        libraryTarget: 'var',
-        library: 'Client'
+        libraryTarget: 'umd',
+        library: 'Client',
+        filename: 'ClientLib.js',
+        globalObject: 'this'
     },
     resolve: {
         alias: {

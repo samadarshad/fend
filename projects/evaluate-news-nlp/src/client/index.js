@@ -1,4 +1,4 @@
-import { respondToSubmit, sendForm } from './js/formHandler'
+import { respondToSubmit, sendForm, testabc } from './js/formHandler'
 import { updateUI } from './js/ui'
 import requestsServiceClass from 'Shared/requests.js'
 import { clientSideRequests } from './js/client-side-requests'
@@ -18,9 +18,13 @@ export {
     sendForm,
     requestsServiceClass,
     clientSideRequests,
-    messageScheme
+    messageScheme,
+
+
+    testabc
 }
 
+//TODO this shouldnt be in index.js, but somewhere else?
 let user_input = document.getElementsByClassName('user-input');
 for (const element of user_input) {
     element.addEventListener("submit", e => Client.respondToSubmit(e) );

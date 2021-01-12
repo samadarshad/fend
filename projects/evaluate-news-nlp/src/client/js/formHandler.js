@@ -19,3 +19,7 @@ export async function sendForm(text) {
     return res
 }
 
+export function testabc() {
+    return "abc"
+}
+
