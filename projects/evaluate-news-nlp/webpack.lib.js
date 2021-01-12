@@ -18,9 +18,6 @@ module.exports = {
     optimization: {
         minimizer: [new TerserPlugin({})],
     },
-    node : {
-        fs: "empty"
-    },
     module: {
         rules: [
             {

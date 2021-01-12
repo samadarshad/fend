@@ -1,12 +1,11 @@
-const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const dotenv = require('dotenv')
-const client_env = dotenv.config({path:__dirname+'/src/client/.env'}).parsed;
+require('dotenv').config()
+const serverPort = process.env.PORT;
 
 module.exports = {
     entry: {
@@ -16,11 +15,6 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: __dirname + '/dist',
-    },
-    resolve: {
-        alias: {
-            Shared: path.resolve(__dirname, 'src/shared/')
-        }
     },
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
@@ -49,7 +43,7 @@ module.exports = {
         new MiniCssExtractPlugin({filename: '[name].css'}),
         new WorkboxPlugin.GenerateSW(),
         new webpack.DefinePlugin({
-            "process.env": JSON.stringify(client_env)
+            "serverPort": serverPort
         })
     ]
 }
