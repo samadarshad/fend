@@ -6,7 +6,6 @@ import './styles/header.scss'
 
 const fetch = window.fetch.bind(window);
 Client.setFetch(fetch)
-Client.setServerUrl(`http://127.0.0.1:${serverPort}/api`)
 let user_input = document.getElementsByClassName('user-input');
 for (const element of user_input) {
     element.addEventListener("submit", e => Client.respondToSubmit(e) );

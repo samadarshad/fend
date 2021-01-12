@@ -8,7 +8,6 @@ describe('formHandler', () => {
     
     it('sendForm is defined', async done => {
         Client.setFetch(fetch)
-        Client.setServerUrl('https://abdus-samad-weather-journal-test.free.beeceptor.com')
         console.log("get url:", Client.getServerUrl())
         // expect(Client.sendForm).toBeDefined();
         const res = await Client.sendForm("Hello")

@@ -12,7 +12,7 @@ export async function respondToSubmit (event) {
 export async function sendForm(text) {
     const jsonMessage = new Client.messageScheme().getJson(text)
     const requests = new Client.requestsServiceClass(Client.getFetch());
-    const res = await requests.postData(`${Client.getServerUrl()}/sentiment`, jsonMessage);
+    const res = await requests.postData(`/api/sentiment`, jsonMessage);
     return res
 }
 

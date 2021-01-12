@@ -19,6 +19,10 @@ module.exports = {
             '/ClientLib.js': {
                 target: 'http://127.0.0.1:8081',
                 secure: false
+            },
+            '/api/*': {
+                target: 'http://127.0.0.1:3000',
+                secure: false
             }
         }
     },
