@@ -2,6 +2,10 @@ export async function respondToSubmit (event, document) {
     try {
         event.preventDefault()
         let formText = document.getElementById('name').value
+        if (Client.validate(formText) == false) {
+            alert("Please enter sentence")
+            return
+        }
         const data = await Client.sendForm(formText)
         await Client.updateUI(data, document);
     } catch (error) {
