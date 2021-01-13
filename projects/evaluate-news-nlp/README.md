@@ -14,23 +14,25 @@ node version 14.15.1
 ```
 
 ## Installation
-Run `sudo npm ci` to install the dependencies, fail if not work. Do `sudo npm install` if it doesnt work.
+Run `sudo npm ci` to install the dependencies. Do `sudo npm install` if it doesnt work.
 
 ## Build & run for production (client and server)
-Run `sudo npm build-prod` to build for production.
-
-`sudo npm run start`
+Run `sudo npm autostart` to build and run for production.
 
 Go to `http://localhost:3000`
 
 ## Build & run for development (client only)
-Run `sudo npm build-dev` to build and run for development. 
+Run `sudo npm autodev` to build and run for development. 
 
 Go to `http://localhost:8080`
 
-Note that if you are going to test server functionality while on development, you must also have the production server running (follow instructions for building and running for production), as the client refers to SERVER_BASE_ENDPOINT_URL=http://127.0.0.1:3000/api as defined in .dev_env. 
+Note that this will automatically re-compile and reload the page on any changes to /src/client or /src/shared folders, but will not re-compile for changes to /src/server. You will need to close the program and re-run it for any changes on /src/server.
 
 ## Running the tests
+First run
+`sudo npm run autobuild`
+
+Then run
 `sudo npm run tests`
 
 Note the tests rely on https://beeceptor.com/console/abdus-samad-weather-journal-test being live. 
