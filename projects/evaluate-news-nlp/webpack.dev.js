@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 require('dotenv').config()
@@ -21,7 +20,7 @@ module.exports = {
                 secure: false
             },
             '/api/*': {
-                target: 'http://127.0.0.1:3000',
+                target: `http://127.0.0.1:${serverPort}`,
                 secure: false
             }
         }
@@ -57,9 +56,6 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-        }),
-        new webpack.DefinePlugin({
-            "serverPort": serverPort //TODO: use proxy instead of server url modification, see https://medium.com/@drgenejones/proxying-an-external-api-with-webpack-serve-code-and-a-restful-data-from-separate-endpoints-4da9b8daf430
         })
     ]
 
