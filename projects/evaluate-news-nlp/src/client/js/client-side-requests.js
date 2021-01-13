@@ -1,5 +1,7 @@
-export function clientSideRequests() {
-    const fetch = window.fetch.bind(window);
-    const requests = new Client.requestsServiceClass(fetch);
-    return requests
+export function setFetch(fetch) {
+    global.fetch = fetch
+}
+
+export function getFetch() {
+    return global.fetch
 }
